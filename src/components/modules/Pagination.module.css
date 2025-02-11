@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 50px;
+}
+
+.container span {
+  padding: 15px;
+}
+.container button {
+  padding: 10px 10px;
+  font-weight: 700;
+  border-radius: 2px;
+  border: none;
+  background-color: rgb(202, 202, 202);
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+p {
+  background-color: rgb(202, 202, 202);
+  width: 40px;
+  text-align: center;
+  margin: 0 10px;
+  padding: 5px 0;
+  border-radius: 2px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.disabled {
+  opacity: 0.3;
+}
+
+.selected {
+  background-color: aqua;
+}
