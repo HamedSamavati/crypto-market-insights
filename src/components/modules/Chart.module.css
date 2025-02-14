@@ -1,0 +1,88 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  z-index: 102;
+}
+.cross {
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: #d33636;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin: 30px 0 0 30px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.chart {
+  display: block;
+  width: min(95%, 800px);
+  padding: 20px;
+  margin: 0px auto;
+  background-color: #18181ce6;
+  border: 2px solid #404042;
+  border-radius: 20px;
+  font-size: 1em;
+}
+.graph {
+  width: 100%;
+  height: 50vh;
+  margin-bottom: 10px;
+}
+.name {
+  display: flex;
+  margin: 5px;
+}
+.name p {
+  background-color: transparent;
+  font-size: 1.4rem;
+}
+.name img {
+  width: 35px;
+  height: 35px;
+  margin-right: 20px;
+}
+.types {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.types button {
+  /* margin: 4px 0px; */
+  background-color: #18181cdb;
+  border: 1px solid #3874ff;
+  color: #3874ff;
+  font-size: 1rem;
+  padding: 5px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.types .selected {
+  background-color: #3874ff;
+  color: #fff;
+}
+
+.details {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px 0px;
+}
+.details p {
+  margin-right: 10px;
+  color: #3874ff;
+  font-weight: 700;
+}
+.details div {
+  display: flex;
+  font-size: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}

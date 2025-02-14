@@ -1,18 +1,19 @@
 import chartUp from "../../assets/chart-up.svg";
 import chartDown from "../../assets/chart-down.svg";
 import { RotatingLines } from "react-loader-spinner";
+import { chartUrl, OPTIONS } from "../services/cryptoApi";
 
 import styles from "./CoinsTable.module.css";
 
-function CoinsTable({ coins, isLoading, currency }) {
+function CoinsTable({ coins, isLoading, currency, setChart, chart }) {
   return (
     <div className={styles.container}>
       {isLoading ? (
         <RotatingLines
           visible={true}
-          height="130"
-          width="130"
-          color="grey"
+          height="110"
+          width="110"
+          strokeColor="#3874ff"
           strokeWidth="3"
           animationDuration="0.75"
           ariaLabel="rotating-lines-loading"
@@ -26,14 +27,20 @@ function CoinsTable({ coins, isLoading, currency }) {
               <th>Coin</th>
               <th>Name</th>
               <th>Price</th>
-              <th>24h</th>
+              <th>24h %</th>
+              <th>Market Cap</th>
               <th>Total Volume</th>
               <th>Trend</th>
             </tr>
           </thead>
           <tbody>
             {coins.map((coin) => (
-              <TableRow key={coin.id} coin={coin} currency={currency} />
+              <TableRow
+                key={coin.id}
+                coin={coin}
+                currency={currency}
+                setChart={setChart}
+              />
             ))}
           </tbody>
         </table>
@@ -44,8 +51,8 @@ function CoinsTable({ coins, isLoading, currency }) {
 
 export default CoinsTable;
 
-const TableRow = ({
-  coin: {
+const TableRow = ({ coin, currency: curr, setChart }) => {
+  const {
     id,
     image,
     name,
@@ -53,13 +60,22 @@ const TableRow = ({
     current_price,
     price_change_percentage_24h: price_change,
     total_volume,
-  },
-  currency: curr,
-}) => {
+    market_cap,
+  } = coin;
+  const showHandler = async () => {
+    try {
+      const data = await fetch(chartUrl(id, curr, 120), OPTIONS);
+      const json = await data.json();
+      setChart({ ...json, coin, curr });
+    } catch (error) {
+      setChart(null);
+    }
+  };
+
   return (
     <tr>
       <td>
-        <div className={styles.symbol}>
+        <div className={styles.symbol} onClick={showHandler}>
           <img src={image} alt={id} />
           <span>{symbol.toUpperCase()}</span>
         </div>
@@ -72,6 +88,11 @@ const TableRow = ({
       <td className={price_change > 0 ? styles.success : styles.failure}>
         {price_change ? price_change.toFixed(2) : ""}%
       </td>
+      <td>
+        {curr === "eur" ? "€" : curr === "jpy" ? "¥" : "$"}
+        {market_cap.toLocaleString()}
+      </td>
+
       <td>
         {curr === "eur" ? "€" : curr === "jpy" ? "¥" : "$"}
         {total_volume.toLocaleString()}

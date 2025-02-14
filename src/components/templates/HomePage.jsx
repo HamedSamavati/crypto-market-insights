@@ -1,9 +1,11 @@
-import { useState } from "react";
 import CoinsTable from "../modules/CoinsTable";
-import { useEffect } from "react";
-import { getCoinUrl, searchUrl } from "../services/cryptoApi";
 import Paginatioin from "../modules/Paginatioin";
 import Search from "../modules/Search";
+import Chart from "../modules/Chart";
+
+import { useState } from "react";
+import { useEffect } from "react";
+import { getCoinUrl, OPTIONS } from "../services/cryptoApi";
 
 function HomePage() {
   const [coins, setCoins] = useState([]);
@@ -12,14 +14,9 @@ function HomePage() {
   const [currency, setCurrency] = useState("usd");
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+  const [chart, setChart] = useState(null);
 
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      "x-cg-demo-api-key": "CG-WT89zoNc7DvavUFcFTP5WTSk",
-    },
-  };
+  const options = OPTIONS;
   useEffect(() => {
     setIsLoading(true);
     const getCoinsData = async () => {
@@ -28,7 +25,6 @@ function HomePage() {
         const json = await res.json();
         setCoins(json);
         setIsLoading(false);
-        console.log(json);
       } catch (error) {
         console.log(error);
       }
@@ -36,45 +32,24 @@ function HomePage() {
     getCoinsData();
   }, [page, currency]);
 
-  useEffect(() => {
-    setSearchResult([]);
-    if (!search) return;
-    const controller = new AbortController();
-    const getSearchedCoin = async () => {
-      try {
-        const res = await fetch(searchUrl(search), {
-          signal: controller.signal,
-        });
-        const json = await res.json();
-        console.log(json);
-        if (json.coins) {
-          setSearchResult(json.coins);
-        }
-      } catch (error) {
-        if (error.name !== "AbortError") {
-          alert(error.message);
-        } else {
-          alert(error.status.error_message);
-        }
-      }
-    };
-    getSearchedCoin();
-    return () => {
-      controller.abort();
-    };
-  }, [search]);
-
   return (
     <>
-      <div>HomePage</div>
       <Search
         setCurrency={setCurrency}
         setSearch={setSearch}
         search={search}
         searchResult={searchResult}
+        setSearchResult={setSearchResult}
       />
-      <CoinsTable coins={coins} isLoading={isLoading} currency={currency} />
+      <CoinsTable
+        coins={coins}
+        isLoading={isLoading}
+        currency={currency}
+        setChart={setChart}
+        chart={chart}
+      />
       <Paginatioin page={page} setPage={setPage} />
+      {!!chart && <Chart chart={chart} setChart={setChart} />}
     </>
   );
 }

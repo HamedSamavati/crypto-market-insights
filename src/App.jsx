@@ -1,11 +1,13 @@
 import HomePage from "./components/templates/HomePage";
+import Layout from "./layouts/Layout";
 
 HomePage;
 function App() {
   return (
     <>
-      <h1>Crypto Market Insights</h1>
-      <HomePage />
+      <Layout>
+        <HomePage />
+      </Layout>
     </>
   );
 }
