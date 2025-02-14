@@ -1,9 +1,13 @@
+import CryptoJS from "crypto-js";
+import apKey from "../../helpers/helper";
+
 const BASE_URL = "https://api.coingecko.com/api/v3/";
+const A_KEY = apKey();
 const OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    "x-cg-demo-api-key": "CG-WT89zoNc7DvavUFcFTP5WTSk",
+    "x-cg-demo-api-key": A_KEY,
   },
 };
 
