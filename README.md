@@ -44,19 +44,21 @@ GitHub Repo: [https://github.com/HamedSamavati/crypto-market-insights](https://g
 
 ## 📂 Project Structure Highlights
 
+```
 src/
-├── components/ # Reusable UI components
-├── pages/ # Dashboard, market listings
-├── services/ # API functions and data fetchers
-├── hooks/ # Custom React hooks for state/data
-├── assets/ # Static images, styles
-└── main.tsx # App entry point
+├── components/     # Reusable UI components
+├── pages/          # Dashboard, market listings
+├── services/       # API functions and data fetchers
+├── hooks/          # Custom React hooks for state/data
+├── assets/         # Static images, styles
+└── main.tsx        # App entry point
+```
 
 ## 🔧 Getting Started
 
 To run this project locally:
 
-```bash
+```
 # Clone the repository
 git clone https://github.com/HamedSamavati/crypto-market-insights.git
 cd crypto-market-insights
@@ -66,7 +68,7 @@ npm install
 
 # Start development server
 npm run dev
-
+```
 
 ✅ No API key required — the app uses the CoinGecko public API with rate limits.
 
@@ -92,4 +94,3 @@ This project is licensed under the [MIT License](LICENSE).
 
 > **Disclaimer**: This project is for educational and portfolio purposes only.
 > Data is provided by the free public [CoinGecko API](https://www.coingecko.com/en/api).
-```
