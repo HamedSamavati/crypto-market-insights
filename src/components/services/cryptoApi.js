@@ -12,7 +12,7 @@ const OPTIONS = {
 };
 
 const getCoinUrl = (page, currency) => {
-  return `${BASE_URL}coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=25&page=${page}&sparkline=true&price_change_percentage=24h&locale=en&precision=0`;
+  return `${BASE_URL}coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=15&page=${page}&sparkline=true&price_change_percentage=24h&locale=en&precision=0`;
 };
 
 const searchUrl = (search) => {

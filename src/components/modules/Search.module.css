@@ -11,7 +11,8 @@
   height: 400px;
   overflow-y: scroll;
   background-color: #18181c;
-  border: solid 2px #22262e;
+  border: solid 3px #4f4f4f;
+  box-shadow: 0 0 17px #929191;
   border-radius: 5px;
 }
 ::-webkit-scrollbar {

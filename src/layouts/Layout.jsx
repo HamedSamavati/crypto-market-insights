@@ -1,13 +1,12 @@
 import styles from "./Layout.module.css";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
 
 function Layout({ children }) {
   return (
     <>
       <header className={styles.header}>
+        <FaMoneyBillTrendUp className="header-icon" />
         <h1>Crypto Market Insights</h1>
-        <h1>
-          <a href="https://samavati.ca">samavati.ca</a>
-        </h1>
       </header>
       {children}
       <footer className={styles.footer}>
